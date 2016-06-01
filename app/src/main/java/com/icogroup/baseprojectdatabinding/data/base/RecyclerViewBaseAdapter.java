@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public abstract class RecyclerViewBaseAdapter<T, VH extends RecyclerViewBaseView
 
     private LayoutInflater mLayoutInflater;
     protected List<T> list = new ArrayList<>();
+    protected Listener<T> listener;
 
     private final Context context;
 
@@ -39,11 +41,25 @@ public abstract class RecyclerViewBaseAdapter<T, VH extends RecyclerViewBaseView
         final RecyclerViewBaseViewHolder<T, VD> viewHolder = (RecyclerViewBaseViewHolder<T, VD>) holder;
         final T t = list.get(position);
         viewHolder.bindTo(t);
+
+        final View view = viewHolder.itemView;
+
+        if(listener != null)
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onClickItem(t, view, viewHolder.getAdapterPosition());
+                }
+            });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void setOnItemClickListener(Listener<T> listener){
+        this.listener = listener;
     }
 
     public void add(T item) {
@@ -68,5 +84,9 @@ public abstract class RecyclerViewBaseAdapter<T, VH extends RecyclerViewBaseView
 
     public void clear() {
         list.clear();
+    }
+
+    public interface Listener<T>{
+        void onClickItem(T t, View v, int position);
     }
 }

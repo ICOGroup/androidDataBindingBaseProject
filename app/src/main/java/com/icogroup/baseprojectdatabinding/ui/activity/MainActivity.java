@@ -11,17 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.icogroup.baseprojectdatabinding.R;
 import com.icogroup.baseprojectdatabinding.data.base.RecyclerViewBaseAdapter;
+import com.icogroup.baseprojectdatabinding.data.routing.BaseRouting;
 import com.icogroup.baseprojectdatabinding.data.sections.movie.MoviesContract;
 import com.icogroup.baseprojectdatabinding.data.sections.movie.MoviesPresenter;
 import com.icogroup.baseprojectdatabinding.databinding.ActivityMainBinding;
 import com.icogroup.baseprojectdatabinding.data.model.Movie;
 import com.icogroup.baseprojectdatabinding.databinding.MovieItemBinding;
-import com.icogroup.baseprojectdatabinding.ui.adapters.MovieAdapter;
 import com.icogroup.baseprojectdatabinding.ui.viewHolder.MovieViewHolder;
 import com.icogroup.baseprojectdatabinding.util.AppUtil;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     private MoviesContract.MovieActionListener mPresenter;
     private MenuItem searchMenuItem;
     private SearchView mSearchView;
+    private BaseRouting mBaseRouting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +69,14 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
             }
         };
 
+        mMovieAdapter.setOnItemClickListener(new RecyclerViewBaseAdapter.Listener<Movie>() {
+            @Override
+            public void onClickItem(Movie movie, View v, int position) {
+                mPresenter.openMovieDetail(movie);
+            }
+        });
         mMovieRecyclerView.setAdapter(mMovieAdapter);
-
+        mBaseRouting = new BaseRouting();
     }
 
     @Override
@@ -127,6 +135,6 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
 
     @Override
     public void openMovieDetail(Movie movie) {
-
+        mBaseRouting.movieDetail(this, this, movie);
     }
 }
