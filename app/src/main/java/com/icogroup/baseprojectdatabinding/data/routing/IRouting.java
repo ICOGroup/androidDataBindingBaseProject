@@ -10,5 +10,5 @@ import com.icogroup.baseprojectdatabinding.data.model.Movie;
  */
 public interface IRouting {
 
-
+    void movieDetail(Activity activity, Context context, Movie movie);
 }

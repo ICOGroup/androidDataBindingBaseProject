@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BaseProjectDataBinding</string>
+
+    <string name="movie_released">Released: %1$s</string>
+    <string name="movie_runtime">Runtime: %1$s</string>
+    <string name="movie_genre">Genre: %1$s</string>
+    <string name="movie_director">Director: %1$s</string>
+    <string name="movie_writer">Writer: %1$s</string>
+    <string name="movie_actors">Actors: %1$s</string>
+    <string name="movie_awards">Awards: %1$s</string>
+    <string name="movie_rating">IMDB Rating: %1$s</string>
+    <string name="movie_votes">IMDB Votes: %1$s</string>
 </resources>

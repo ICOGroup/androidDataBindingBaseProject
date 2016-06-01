@@ -1,5 +1,7 @@
 package com.icogroup.baseprojectdatabinding.data.connection.repositories.movies;
 
+
+
 import com.icogroup.baseprojectdatabinding.data.model.Movie;
 
 import java.util.List;
@@ -9,7 +11,19 @@ import java.util.List;
  */
 public interface IMovieServices {
 
-    void onGetMoviesSuccess(List<Movie> movies);
+    interface Movies{
 
-    void onGetMoviesFailed(String error);
+        void onGetMoviesSuccess(List<Movie> movies);
+
+        void onGetMoviesFailed(String error);
+    }
+
+
+    interface MovieDetail{
+
+        void onGetMovieSuccess(Movie movie);
+
+        void onGetMovieFailed(String error);
+    }
+
 }

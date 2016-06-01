@@ -1,6 +1,7 @@
 package com.icogroup.baseprojectdatabinding.data.connection.interfaces;
 
 
+import com.icogroup.baseprojectdatabinding.data.model.Movie;
 import com.icogroup.baseprojectdatabinding.data.model.Search;
 
 import retrofit2.Call;
@@ -14,4 +15,7 @@ public interface MovieInterface {
 
     @GET("/")
     Call<Search> searchMovies(@Query("s") String search);
+
+    @GET("/?plot=full")
+    Call<Movie> gethMovie(@Query("i") String id);
 }

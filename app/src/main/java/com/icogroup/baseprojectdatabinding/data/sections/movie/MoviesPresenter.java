@@ -9,20 +9,20 @@ import java.util.List;
 /**
  * Created by Ulises.harris on 4/29/16.
  */
-public class MoviesPresenter implements MoviesContract.MovieActionListener, IMovieServices {
+public class MoviesPresenter implements MoviesContract.MovieActionListener, MoviesProvider.MoviesDataOutput {
 
-    MovieServices mMovieServices;
+    MoviesInteractor mInteractor;
     MoviesContract.View mView;
 
     public MoviesPresenter(MoviesContract.View view) {
         mView = view;
 
-        mMovieServices = new MovieServices(this);
+        mInteractor = new MoviesInteractor(this);
     }
 
     @Override
-    public void getMovies(String text) {
-        mMovieServices.searchMovie(text);
+    public void getMovies(String text){
+        mInteractor.getMovies(text);
     }
 
     @Override
@@ -31,12 +31,12 @@ public class MoviesPresenter implements MoviesContract.MovieActionListener, IMov
     }
 
     @Override
-    public void onGetMoviesSuccess(List<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
         mView.showMovies(movies);
     }
 
     @Override
-    public void onGetMoviesFailed(String error) {
+    public void setError(String error) {
         mView.showErrors(error);
     }
 }

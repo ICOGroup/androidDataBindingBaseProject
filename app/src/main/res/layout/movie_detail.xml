@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.icogroup.baseprojectdatabinding.data.model.Movie"/>
+        <variable
+            name="movie"
+            type="Movie"/>
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility='@{movie.title == null ? View.GONE : View.VISIBLE}'>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:src='@{movie.poster}'/>
+
+            <LinearLayout
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_alignTop="@+id/poster"
+                android:layout_toEndOf="@+id/poster"
+                android:layout_toRightOf="@+id/poster"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{movie.title}"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{movie.year}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/rated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{movie.rated}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/released"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_released(movie.released)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_runtime(movie.runtime)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_genre(movie.genre)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_rating(movie.imdbRating)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/votes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_votes(movie.imdbVotes)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cast_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_alignLeft="@id/poster"
+                android:layout_alignStart="@id/poster"
+                android:layout_below="@+id/info"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/director"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_director(movie.director)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/writer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_writer(movie.writer)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/actors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_actors(movie.actors)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+                <TextView
+                    android:id="@+id/awards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/movie_awards(movie.awards)}"
+                    android:textAppearance="?android:attr/textAppearance"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cast_info"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:text="@{movie.plot}"
+                android:textAppearance="?android:attr/textAppearance"/>
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>
