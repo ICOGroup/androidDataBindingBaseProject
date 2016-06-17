@@ -43,6 +43,13 @@ public class MovieDetailActivity extends AppCompatActivity implements MovieDetai
 
         mPresenter.getMovie(movie.getId());
     }
+
+    @Override
+    protected void onDestroy() {
+        mPresenter.onDestroy();
+        super.onDestroy();
+    }
+
     @Override
     public void showError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();

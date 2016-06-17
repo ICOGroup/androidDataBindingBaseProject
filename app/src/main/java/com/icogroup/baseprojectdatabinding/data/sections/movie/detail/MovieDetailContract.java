@@ -15,5 +15,7 @@ public interface MovieDetailContract {
 
     interface MovieDetailActionListener{
         void getMovie(String id);
+
+        void onDestroy();
     }
 }

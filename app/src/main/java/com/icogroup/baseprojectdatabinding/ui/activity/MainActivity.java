@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements MoviesContract.Vi
     }
 
     @Override
+    protected void onDestroy() {
+        mPresenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         searchMenuItem = menu.findItem(R.id.action_search);

@@ -8,8 +8,8 @@ import com.icogroup.baseprojectdatabinding.data.model.Movie;
 public class MovieDetailPresenter implements MovieDetailContract.MovieDetailActionListener,
         MovieDetailProvider.MovieDetailOutput {
 
-    private final MovieDetailContract.View mView;
-    private final MovieDetailInteractor mInteractor;
+    private MovieDetailContract.View mView;
+    private MovieDetailInteractor mInteractor;
 
     public MovieDetailPresenter(MovieDetailContract.View view) {
 
@@ -20,7 +20,13 @@ public class MovieDetailPresenter implements MovieDetailContract.MovieDetailActi
 
     @Override
     public void getMovie(String id) {
-        mInteractor.getMovie(id);
+        if(mView != null)
+            mInteractor.getMovie(id);
+    }
+
+    @Override
+    public void onDestroy() {
+        mView = null;
     }
 
     @Override

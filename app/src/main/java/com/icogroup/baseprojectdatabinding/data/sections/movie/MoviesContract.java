@@ -25,6 +25,8 @@ public interface MoviesContract {
 
         void getMovies(String text);
 
+        void onDestroy();
+
         void openMovieDetail(Movie movie);
     }
 }

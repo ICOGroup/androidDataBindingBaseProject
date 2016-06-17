@@ -1,6 +1,6 @@
 package com.icogroup.baseprojectdatabinding.data.sections.movie.detail;
 
-import com.icogroup.baseprojectdatabinding.data.connection.repositories.movies.IMovieServices;
+import com.icogroup.baseprojectdatabinding.data.connection.repositories.RepositoryInterface;
 import com.icogroup.baseprojectdatabinding.data.connection.repositories.movies.MovieServices;
 import com.icogroup.baseprojectdatabinding.data.model.Movie;
 
@@ -20,14 +20,14 @@ public class MovieDetailInteractor implements MovieDetailProvider {
 
     @Override
     public void getMovie(String id) {
-        mMovieServices.getMovie(id, new IMovieServices.MovieDetail() {
+        mMovieServices.getMovie(id, new RepositoryInterface<Movie>() {
             @Override
-            public void onGetMovieSuccess(Movie movie) {
-                mOutput.setMovie(movie);
+            public void onSuccess(Movie item) {
+                mOutput.setMovie(item);
             }
 
             @Override
-            public void onGetMovieFailed(String error) {
+            public void onFailure(String error) {
                 mOutput.setError(error);
             }
         });

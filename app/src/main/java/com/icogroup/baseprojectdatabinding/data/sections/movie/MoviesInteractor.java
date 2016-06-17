@@ -1,7 +1,7 @@
 package com.icogroup.baseprojectdatabinding.data.sections.movie;
 
 
-import com.icogroup.baseprojectdatabinding.data.connection.repositories.movies.IMovieServices;
+import com.icogroup.baseprojectdatabinding.data.connection.repositories.RepositoryInterface;
 import com.icogroup.baseprojectdatabinding.data.connection.repositories.movies.MovieServices;
 import com.icogroup.baseprojectdatabinding.data.model.Movie;
 
@@ -24,14 +24,14 @@ public class MoviesInteractor implements MoviesProvider {
     @Override
     public void getMovies(String search) {
 
-        mMovieServices.searchMovie(search, new IMovieServices.Movies() {
+        mMovieServices.searchMovie(search, new RepositoryInterface<List<Movie>>() {
             @Override
-            public void onGetMoviesSuccess(List<Movie> movies) {
-                mOutput.setMovies(movies);
+            public void onSuccess(List<Movie> item) {
+                mOutput.setMovies(item);
             }
 
             @Override
-            public void onGetMoviesFailed(String error) {
+            public void onFailure(String error) {
                 mOutput.setError(error);
             }
         });

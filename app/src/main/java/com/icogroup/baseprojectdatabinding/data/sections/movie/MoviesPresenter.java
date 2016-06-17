@@ -1,7 +1,5 @@
 package com.icogroup.baseprojectdatabinding.data.sections.movie;
 
-import com.icogroup.baseprojectdatabinding.data.connection.repositories.movies.IMovieServices;
-import com.icogroup.baseprojectdatabinding.data.connection.repositories.movies.MovieServices;
 import com.icogroup.baseprojectdatabinding.data.model.Movie;
 
 import java.util.List;
@@ -22,7 +20,13 @@ public class MoviesPresenter implements MoviesContract.MovieActionListener, Movi
 
     @Override
     public void getMovies(String text){
-        mInteractor.getMovies(text);
+        if(mView != null)
+            mInteractor.getMovies(text);
+    }
+
+    @Override
+    public void onDestroy() {
+        mView = null;
     }
 
     @Override
